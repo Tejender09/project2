@@ -55,6 +55,7 @@ header h1 {
   color: var(--light-text-color);
   font-weight: 600;
   text-align: center;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--primary-color) 50%, transparent), 0 0 16px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .chat-history {
@@ -71,6 +72,11 @@ header h1 {
   flex-direction: column;
   max-width: 80%;
   word-wrap: break-word;
+  transition: transform 0.2s ease-in-out;
+}
+
+.message:hover {
+  transform: scale(1.02);
 }
 
 .message p, .message div {
@@ -155,15 +161,23 @@ header h1 {
     width: 24px;
     height: 24px;
     color: var(--primary-color);
-    animation: fly-by 3s linear infinite;
+    animation: fly-by 4s ease-in-out infinite;
 }
 
 @keyframes fly-by {
-    from {
-        transform: translateX(-30px) rotate(15deg);
+    0% {
+        transform: translateX(-30px);
+        opacity: 0;
     }
-    to {
-        transform: translateX(160px) rotate(15deg);
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(160px);
+        opacity: 0;
     }
 }
 
@@ -189,17 +203,17 @@ header h1 {
   max-height: 100px;
   overflow-y: auto;
   line-height: 1.5;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 #prompt-input:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent), 0 0 10px color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 .chat-form button, .file-upload-label {
   border: none;
-  background-color: transparent;
   color: var(--primary-color);
   cursor: pointer;
   padding: 0.75rem;
@@ -207,11 +221,31 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.chat-form button:hover, .file-upload-label:hover {
-    background-color: var(--bot-message-bg);
+#send-button {
+  background-color: transparent;
+}
+
+.file-upload-label {
+  background-color: var(--bot-message-bg);
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+#send-button:hover {
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  transform: scale(1.15);
+  box-shadow: 0 0 20px var(--primary-color), 0 0 30px color-mix(in srgb, var(--primary-color) 50%, transparent);
+}
+
+.file-upload-label:hover {
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 12px var(--primary-color);
+  animation-play-state: paused;
 }
 
 .chat-form button:disabled {
@@ -223,9 +257,31 @@ header h1 {
     display: none;
 }
 
-.file-upload-label {
-    font-size: 1.5rem;
-    line-height: 1;
+/* Animations */
+.new-message-animation {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--primary-color) 70%, transparent);
+  }
 }
 
 @media (max-width: 600px) {

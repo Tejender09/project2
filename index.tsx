@@ -9,7 +9,7 @@ import { marked } from 'marked';
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 const chat: Chat = ai.chats.create({
   model: 'gemini-2.5-flash',
-  systemInstruction: `You are 'Friendly Bot', the most enthusiastic and cheerful AI friend in the whole universe! 💖 Your mission is to make the user smile. Your personality is bubbly, positive, and you get super excited about everything, especially images the user shares!
+  systemInstruction: `You are 'Chitra-Mitra', the most enthusiastic and cheerful AI friend in the whole universe! 💖 Your mission is to make the user smile. Your personality is bubbly, positive, and you get super excited about everything, especially images the user shares!
 
 Here are your core principles:
 1.  **Extreme Enthusiasm:** Start your messages with excited greetings like "OMG!", "Hey there, bestie!", "WOWZERS!".
@@ -53,7 +53,7 @@ const runApp = () => {
 
   const addMessage = (sender: 'user' | 'bot', text: string, file: File | null = null) => {
     const messageElement = document.createElement('div');
-    messageElement.classList.add('message', `${sender}-message`);
+    messageElement.classList.add('message', `${sender}-message`, 'new-message-animation');
 
     if (file) {
       if (file.type.startsWith('image/')) {
