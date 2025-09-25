@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Friendly Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.14.0",
+          "marked": "https://esm.sh/marked@^12.0.2"
+        }
+      }
+    </script>
+    <script type="module" src="index.tsx"></script>
+  </head>
+  <body>
+    <main class="chat-container">
+      <header>
+        <h1>Friendly Chatbot 🤖✨</h1>
+      </header>
+      <div id="chat-history" class="chat-history" aria-live="polite">
+        <div class="message bot-message">
+          <p>Hello there! I'm your super-duper friendly chatbot! 🤩 What amazing things are we going to talk about today? You can also upload an image and we can chat about it! 🖼️</p>
+        </div>
+      </div>
+      <div class="loading-indicator" id="loading-indicator" role="status" aria-label="Bot is thinking" hidden>
+        <svg class="plane" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+        </svg>
+      </div>
+      <form id="chat-form" class="chat-form">
+        <label for="file-upload" class="file-upload-label" aria-label="Upload file">
+          📎
+        </label>
+        <input type="file" id="file-upload" accept="image/*,application/pdf" />
+        <textarea id="prompt-input" placeholder="Type your message here..." aria-label="Message input" rows="1"></textarea>
+        <button type="submit" id="send-button" aria-label="Send message">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+          </svg>
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

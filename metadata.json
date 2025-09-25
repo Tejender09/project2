@@ -1,0 +1,5 @@
+{
+  "name": "Friendly Chatbot",
+  "description": "An overly friendly chatbot that can discuss uploaded files with you.",
+  "requestFramePermissions": []
+}
